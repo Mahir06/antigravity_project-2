@@ -8,7 +8,39 @@
 </head>
 <body>
     <div class="page">
-        <img src="assets/apple-iphone-16-pro-max-2024-medium.png" alt="iPhone 16 Pro Max Mockup" class="device--photo" width="364" height="750">
+        <div class="phone-container">
+            <img src="assets/apple-iphone-16-pro-max-2024-medium.png" alt="iPhone 16 Pro Max Mockup" class="device--photo" width="364" height="750">
+            
+            <div class="screen-content">
+                <div class="header">
+                    <h2>Recent Images</h2>
+                    <p>Swipe up to send to your friend's letterbox.</p>
+                </div>
+                
+                <div class="letterbox-area">
+                    <div class="letterbox-slot"></div>
+                    <p class="letterbox-text">Drop here</p>
+                </div>
+
+                <div class="card-stack" id="card-stack">
+                    <div class="card card-2">
+                        <div class="card-inner">
+                            <span class="placeholder-icon">📸</span>
+                        </div>
+                    </div>
+                    <div class="card card-1" id="draggable-card">
+                        <div class="card-inner">
+                            <div class="card-image-placeholder"></div>
+                            <div class="card-info">
+                                <h3>Beach Trip</h3>
+                                <p>Just now</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
