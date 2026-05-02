@@ -157,11 +157,6 @@ body, html {
     background: none; border: none; color: white; font-size: 18px;
     cursor: pointer; padding: 4px; line-height: 1;
 }
-.di-btn:active { transform: scale(0.96); }
-
-.dynamic-island.island-playing .di-collapsed {
-    box-shadow: 0 8px 20px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.08);
-}
 
 /* ===================== VINYL CAROUSEL ===================== */
 .vinyl-carousel-section {
@@ -202,24 +197,6 @@ body, html {
     transform: scale(1.08) translateY(-4px);
     box-shadow: 0 16px 40px rgba(0,0,0,0.5);
     filter: brightness(1.05);
-}
-.vinyl-card.micro-haptic .haptic-pulse {
-    opacity: 1;
-    animation: haptic-pop 260ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-.haptic-pulse {
-    position: absolute;
-    inset: -8px;
-    border-radius: 18px;
-    border: 1px solid rgba(255,255,255,0.35);
-    box-shadow: 0 0 0 1px rgba(255,255,255,0.12), 0 10px 30px rgba(0,0,0,0.4);
-    opacity: 0;
-    pointer-events: none;
-}
-@keyframes haptic-pop {
-    0% { transform: scale(0.94); opacity: 0.15; }
-    45% { transform: scale(1.04); opacity: 0.9; }
-    100% { transform: scale(1.08); opacity: 0; }
 }
 
 .vinyl-card-art {
@@ -311,14 +288,6 @@ body, html {
     width: 100%; height: 100%;
     border-radius: 50%;
     box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-}
-.ghost-label {
-    position: absolute;
-    inset: 35%;
-    border-radius: 50%;
-    background-size: cover;
-    background-position: center;
-    box-shadow: inset 0 1px 4px rgba(255,255,255,0.3), 0 2px 8px rgba(0,0,0,0.5);
 }
 
 /* ===================== SWIPE HINT ===================== */
@@ -460,24 +429,6 @@ body, html {
     display: flex; align-items: center; justify-content: center;
     font-size: 7px; font-weight: 700;
     color: white; text-align: center;
-    background-size: cover;
-    background-position: center;
-}
-.groove-glow {
-    position: absolute;
-    inset: 11%;
-    border-radius: 50%;
-    border: 1px solid rgba(120, 220, 255, 0.15);
-    opacity: 0;
-    pointer-events: none;
-}
-.platter-vinyl.playing .groove-glow {
-    opacity: 1;
-    animation: groove-breathe 1.4s ease-in-out infinite;
-}
-@keyframes groove-breathe {
-    0%, 100% { box-shadow: 0 0 0 rgba(120,220,255,0.1); transform: scale(1); }
-    50% { box-shadow: 0 0 18px rgba(120,220,255,0.35); transform: scale(1.01); }
 }
 
 .drop-hint {
@@ -546,7 +497,6 @@ body, html {
     border-radius: 0 0 1px 1px;
 }
 .tonearm.on-record { transform: rotate(0deg); }
-.tonearm-pivot:active { transform: scale(0.96); }
 
 /* ===================== CONTROLS ===================== */
 .player-controls {
@@ -602,16 +552,3 @@ body, html {
     50% { box-shadow: 0 0 8px 3px rgba(100,200,255,0.7); }
 }
 .tonearm-needle.active { animation: needle-glow 1s ease-in-out infinite; }
-
-@media (prefers-reduced-motion: reduce) {
-    .platter-vinyl,
-    .di-vinyl-disc,
-    .di-mini-vinyl,
-    .swipe-hint,
-    .drop-hint {
-        animation: none !important;
-    }
-    * {
-        transition-duration: 0.01ms !important;
-    }
-}
