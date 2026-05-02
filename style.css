@@ -40,7 +40,6 @@ body, html {
 
 .screen-content {
     position: absolute;
-    /* Approximate screen bounds for the mockup */
     top: 2.5%;
     left: 4.5%;
     right: 4.5%;
@@ -50,24 +49,7 @@ body, html {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    padding: 30px 20px;
     box-sizing: border-box;
-}
-
-/* header */
-.header {
-    text-align: left;
-    margin-top: 30px; 
-}
-.header h2 {
-    margin: 0 0 5px 0;
-    font-size: 28px;
-    font-weight: 700;
-}
-.header p {
-    margin: 0;
-    color: #8E8E93;
-    font-size: 16px;
 }
 
 /* letterbox background */
@@ -76,11 +58,8 @@ body, html {
     top: 0;
     left: 0;
     width: 100%;
-    height: 60%;
-    z-index: 0; /* behind everything */
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    height: 100%; /* Cover full back to avoid white gaps */
+    z-index: 0; 
 }
 
 .letterbox-bg img {
@@ -90,115 +69,156 @@ body, html {
     object-position: top center;
 }
 
-.gradient-mask {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Fades the image out to match the background color towards the bottom */
-    background: linear-gradient(to bottom, transparent 20%, #fafafa 100%);
-    z-index: 1;
-}
-
-/* Grain effect overlay */
-.gradient-mask::after {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    opacity: 0.15;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 2;
-    /* Apply grain mostly towards the bottom where the gradient is */
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
-    mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
-}
-
-/* Ensure header is above the background */
-.header {
-    text-align: left;
-    margin-top: 30px; 
+/* Top Bar */
+.top-bar {
     position: relative;
-    z-index: 5;
-}
-
-/* card stack */
-.card-stack {
-    position: absolute;
-    bottom: 40px;
-    left: 20px;
-    right: 20px;
-    height: 320px;
     z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 20px 0;
 }
 
-.card {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 28px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    transform-origin: bottom center;
+.icon-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+}
+
+.share-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Main Content Wrapper (pushes to bottom) */
+.main-content-wrapper {
+    position: relative;
+    z-index: 10;
+    margin-top: auto; /* Push to bottom */
+    display: flex;
+    flex-direction: column;
+    height: 65%; /* Takes up bottom portion */
+}
+
+/* Chips Row */
+.chips-row {
+    display: flex;
+    gap: 12px;
+    padding: 0 20px 20px;
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+}
+.chips-row::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.chip {
+    padding: 10px 20px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: inherit;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+/* Bottom Sheet */
+.bottom-sheet {
+    background-color: #ffffff;
+    flex: 1;
+    border-top-left-radius: 36px;
+    border-top-right-radius: 36px;
+    padding: 24px;
+    overflow-y: auto;
+}
+
+/* Cards Grid */
+.cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    grid-auto-rows: 180px;
+}
+
+.grid-card {
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: inherit;
+    position: relative;
+}
+
+/* Create Card */
+.create-card {
+    border: 3px dashed #E5E5EA;
+    background: transparent;
+    color: #8E8E93;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.plus-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #F2F2F7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 24px;
+    font-weight: 400;
+    color: #8E8E93;
+}
+
+/* Item Cards */
+.item-card {
+    font-size: 24px;
+    font-weight: 800;
+    cursor: grab;
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
     user-select: none;
     touch-action: none;
 }
 
-/* Back card (Orange) */
-.card-2 {
-    background: #FF6B22; 
-    transform: scale(0.9) translateY(-20px);
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 40px;
-}
-
-/* Front card (Purple) */
-.card-1 {
-    background: #4A00FF; 
-    z-index: 2;
-    cursor: grab;
-    display: flex;
-    flex-direction: column;
-    padding: 24px;
-    box-sizing: border-box;
-    color: white;
-}
-.card-1:active {
+.item-card:active {
     cursor: grabbing;
 }
 
-.card-inner {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.card-image-placeholder {
-    flex: 1;
-    background: rgba(255,255,255,0.2);
-    border-radius: 16px;
-    margin-bottom: 20px;
-}
-
-.card-info h3 {
-    margin: 0 0 4px 0;
-    font-size: 22px;
-}
-.card-info p {
+.item-card h3 {
     margin: 0;
-    opacity: 0.8;
-    font-size: 14px;
+    position: absolute;
+    top: 24px;
+}
+
+.card-pink {
+    background-color: #FDE7F7;
+    color: #B37BA8;
+}
+
+.card-green {
+    background-color: #F2FCE1;
+    color: #92B56A;
 }
 
 /* Animation class when card is sent */
 .card-sent {
-    transform: scale(0.3) translateY(-600px) rotate(15deg) !important;
+    transform: scale(0.3) translateY(-800px) rotate(15deg) !important;
     opacity: 0 !important;
     transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease 0.2s !important;
+    z-index: 100;
 }

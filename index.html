@@ -12,28 +12,37 @@
             <img src="assets/apple-iphone-16-pro-max-2024-medium.png" alt="iPhone 16 Pro Max Mockup" class="device--photo" width="364" height="750">
             
             <div class="screen-content">
-                <div class="header">
-                    <h2>Recent Images</h2>
-                    <p>Swipe up to send to your friend's letterbox.</p>
-                </div>
-                
                 <div class="letterbox-bg">
                     <img src="assets/letterbox.png" alt="Letterbox Background">
-                    <div class="gradient-mask"></div>
                 </div>
 
-                <div class="card-stack" id="card-stack">
-                    <div class="card card-2">
-                        <div class="card-inner">
-                            <span class="placeholder-icon">📸</span>
-                        </div>
+                <div class="top-bar">
+                    <button class="icon-btn">&lt;</button>
+                    <button class="icon-btn share-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg></button>
+                </div>
+
+                <div class="main-content-wrapper">
+                    <div class="chips-row">
+                        <button class="chip active">Letter</button>
+                        <button class="chip">Images</button>
+                        <button class="chip">Challenges</button>
+                        <button class="chip">Games</button>
                     </div>
-                    <div class="card card-1" id="draggable-card">
-                        <div class="card-inner">
-                            <div class="card-image-placeholder"></div>
-                            <div class="card-info">
-                                <h3>Beach Trip</h3>
-                                <p>Just now</p>
+
+                    <div class="bottom-sheet">
+                        <div class="cards-grid">
+                            <div class="grid-card create-card">
+                                <div class="plus-circle">+</div>
+                                <span>Create</span>
+                            </div>
+                            <div class="grid-card item-card card-pink" id="draggable-card">
+                                <h3>Letter</h3>
+                            </div>
+                            <div class="grid-card item-card card-green">
+                                <h3>Letter</h3>
+                            </div>
+                            <div class="grid-card item-card card-pink">
+                                <h3>Letter</h3>
                             </div>
                         </div>
                     </div>
