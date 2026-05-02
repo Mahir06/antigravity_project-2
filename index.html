@@ -3,12 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Phone Mockup Showcase</title>
+    <title>Vinyl Player — iOS Interactive Prototype</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="page">
-        <img src="assets/apple-iphone-16-pro-max-2024-medium.png" alt="iPhone 16 Pro Max Mockup" class="device--photo" width="364" height="750">
+
+<div class="page">
+    <div class="phone-container">
+        <img src="assets/apple-iphone-16-pro-max-2024-medium.png" alt="iPhone Frame" class="device--photo" width="364" height="750">
+
+        <!-- Dynamic Island -->
+        <div class="dynamic-island" id="dynamic-island">
+            <div class="di-collapsed">
+                <div class="di-mini-vinyl" id="di-mini-vinyl"></div>
+            </div>
+            <div class="di-expanded" id="di-expanded">
+                <div class="di-vinyl-wrap">
+                    <div class="di-vinyl-disc" id="di-vinyl-disc"></div>
+                </div>
+                <div class="di-info">
+                    <span class="di-track" id="di-track">Blue in Green</span>
+                    <span class="di-artist" id="di-artist">Miles Davis</span>
+                    <div class="di-progress-bar"><div class="di-progress-fill" id="di-progress-fill"></div></div>
+                </div>
+                <div class="di-controls">
+                    <button class="di-btn" id="di-play-pause">⏸</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen Content -->
+        <div class="screen-content" id="screen-content">
+
+            <!-- Home Screen Background -->
+            <div class="home-bg" id="home-bg">
+                <img src="assets/home-screen.png" alt="Home Screen" class="home-bg-img">
+                <div class="home-blur-overlay" id="home-blur-overlay"></div>
+            </div>
+
+            <!-- Status Bar -->
+            <div class="status-bar">
+                <span class="status-time">9:41</span>
+                <div class="status-icons">
+                    <svg width="16" height="11" viewBox="0 0 16 11" fill="white"><rect x="0" y="4" width="3" height="7" rx="1"/><rect x="4.5" y="2.5" width="3" height="8.5" rx="1"/><rect x="9" y="0.5" width="3" height="10.5" rx="1"/><rect x="13.5" y="2" width="2" height="9" rx="1" opacity="0.4"/></svg>
+                    <svg width="15" height="11" viewBox="0 0 15 11" fill="white"><path d="M7.5 2.2C9.8 2.2 11.9 3.1 13.4 4.6L14.8 3.2C12.9 1.2 10.3 0 7.5 0C4.7 0 2.1 1.2 0.2 3.2L1.6 4.6C3.1 3.1 5.2 2.2 7.5 2.2Z"/><path d="M7.5 5.5C9 5.5 10.4 6.1 11.4 7.1L12.8 5.7C11.4 4.3 9.6 3.5 7.5 3.5C5.4 3.5 3.6 4.3 2.2 5.7L3.6 7.1C4.6 6.1 6 5.5 7.5 5.5Z"/><circle cx="7.5" cy="9.5" r="1.5"/></svg>
+                    <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="white" stroke-opacity="0.35"/><rect x="1.5" y="1.5" width="16" height="9" rx="2" fill="white"/><path d="M23 4V8C23.8 7.6 24.5 6.9 24.5 6C24.5 5.1 23.8 4.4 23 4Z" fill="white" opacity="0.4"/></svg>
+                </div>
+            </div>
+
+            <!-- Vinyl Carousel -->
+            <div class="vinyl-carousel-section" id="vinyl-carousel-section">
+                <div class="carousel-label">My Vinyl Collection</div>
+                <div class="vinyl-carousel" id="vinyl-carousel">
+                    <!-- Records injected by JS -->
+                </div>
+            </div>
+
+            <!-- Home Screen App Grid (dimmed during interaction) -->
+            <div class="app-grid" id="app-grid">
+                <div class="app-icon"><div class="app-icon-img" style="background:linear-gradient(135deg,#34c759,#30b250)">📹</div><span>FaceTime</span></div>
+                <div class="app-icon"><div class="app-icon-img" style="background:linear-gradient(135deg,#fff,#eee);color:#e6371a;font-size:14px;font-weight:700">THU<br><span style="font-size:22px;color:#1c1c1e;font-weight:300">31</span></div><span>Calendar</span></div>
+                <div class="app-icon"><div class="app-icon-img" style="background:linear-gradient(135deg,#fff,#f5f5f5)">🌸</div><span>Photos</span></div>
+                <div class="app-icon"><div class="app-icon-img" style="background:linear-gradient(135deg,#1c1c1e,#3a3a3c)">📷</div><span>Camera</span></div>
+                <div class="app-icon"><div class="app-icon-img" style="background:linear-gradient(135deg,#147aff,#0040dd)">✉️</div><span>Mail</span></div>
+                <div class="app-icon"><div class="app-icon-img" style="background:linear-gradient(135deg,#fff,#f5f5f5)">📝</div><span>Notes</span></div>
+                <div class="app-icon"><div class="app-icon-img" style="background:linear-gradient(135deg,#fff,#f5f5f5)">🔴</div><span>Reminders</span></div>
+                <div class="app-icon"><div class="app-icon-img" style="background:linear-gradient(135deg,#fff,#f0f0f0)">🕐</div><span>Clock</span></div>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="search-bar">🔍 Search</div>
+
+            <!-- Dock -->
+            <div class="dock">
+                <div class="app-icon dock-icon"><div class="app-icon-img" style="background:linear-gradient(135deg,#34c759,#30b250)">📞</div></div>
+                <div class="app-icon dock-icon"><div class="app-icon-img" style="background:linear-gradient(135deg,#147aff,#0040dd)">🧭</div></div>
+                <div class="app-icon dock-icon"><div class="app-icon-img" style="background:linear-gradient(135deg,#34c759,#30b250)">💬</div></div>
+                <div class="app-icon dock-icon"><div class="app-icon-img" style="background:linear-gradient(135deg,#fc3c44,#d81f2a)">🎵</div></div>
+            </div>
+
+            <!-- Dragged Vinyl Ghost (follows pointer) -->
+            <div class="vinyl-ghost" id="vinyl-ghost"></div>
+
+            <!-- Record Player Panel -->
+            <div class="player-panel" id="player-panel">
+                <div class="player-panel-handle"></div>
+                <div class="player-body" id="player-body">
+
+                    <!-- Player top info -->
+                    <div class="player-header">
+                        <div class="player-track-info">
+                            <span class="player-track-name" id="player-track-name">Drop a vinyl to play</span>
+                            <span class="player-track-artist" id="player-track-artist">— — —</span>
+                        </div>
+                        <button class="player-collapse-btn" id="player-collapse-btn">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path d="M10 13L3 6h14z"/></svg>
+                        </button>
+                    </div>
+
+                    <!-- Turntable -->
+                    <div class="turntable" id="turntable">
+                        <!-- Platter -->
+                        <div class="platter" id="platter">
+                            <div class="platter-mat"></div>
+                            <div class="platter-spindle" id="platter-spindle">
+                                <!-- Vinyl on platter goes here -->
+                                <div class="platter-vinyl" id="platter-vinyl"></div>
+                            </div>
+                            <!-- Drop zone hint -->
+                            <div class="drop-hint" id="drop-hint">
+                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-dasharray="4 4"/><circle cx="20" cy="20" r="4" fill="rgba(255,255,255,0.5)"/></svg>
+                            </div>
+                        </div>
+
+                        <!-- Tonearm -->
+                        <div class="tonearm-assembly" id="tonearm-assembly">
+                            <div class="tonearm-pivot" id="tonearm-pivot">
+                                <div class="tonearm" id="tonearm">
+                                    <div class="tonearm-arm"></div>
+                                    <div class="tonearm-head">
+                                        <div class="tonearm-needle" id="tonearm-needle"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Player controls -->
+                    <div class="player-controls">
+                        <button class="ctrl-btn" id="btn-prev">⏮</button>
+                        <button class="ctrl-btn ctrl-play" id="btn-play">▶</button>
+                        <button class="ctrl-btn" id="btn-next">⏭</button>
+                    </div>
+
+                    <!-- Progress bar -->
+                    <div class="player-progress">
+                        <span class="prog-time" id="prog-current">0:00</span>
+                        <div class="prog-track" id="prog-track">
+                            <div class="prog-fill" id="prog-fill"></div>
+                        </div>
+                        <span class="prog-time" id="prog-total">3:24</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hint text -->
+            <div class="swipe-hint" id="swipe-hint">↑ Drag a vinyl up to play</div>
+
+        </div>
     </div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
